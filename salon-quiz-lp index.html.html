@@ -1,0 +1,900 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>找到你的療癒風格 ✦ 薇朵漾美學</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Noto+Serif+TC:wght@300;400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+  :root {
+    --cream: #F7F3EE;
+    --warm: #EDE6DC;
+    --gold: #C9A96E;
+    --gold-light: #E8D5B0;
+    --deep: #1C1410;
+    --brown: #6B4F3A;
+    --blush: #D4A89A;
+    --sage: #8A9E8C;
+    --text: #2D2118;
+    --muted: #9B8878;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html, body {
+    background: var(--cream);
+    color: var(--text);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,169,110,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(212,168,154,0.1) 0%, transparent 60%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .noise {
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='512' height='512' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.4;
+  }
+
+  #app {
+    position: relative;
+    z-index: 1;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 20px;
+  }
+
+  /* SCREENS */
+  .screen {
+    width: 100%;
+    max-width: 480px;
+    display: none;
+    animation: fadeUp 0.6s ease forwards;
+  }
+  .screen.active { display: flex; flex-direction: column; }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* INTRO */
+  .brand-mark {
+    text-align: center;
+    margin-bottom: 32px;
+  }
+  .brand-mark .ornament {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    letter-spacing: 0.35em;
+    color: var(--gold);
+    text-transform: uppercase;
+    display: block;
+    margin-bottom: 6px;
+  }
+  .brand-mark .brand-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--deep);
+    letter-spacing: 0.08em;
+    line-height: 1;
+  }
+
+  .intro-card {
+    background: rgba(255,255,255,0.72);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 24px;
+    padding: 40px 32px;
+    text-align: center;
+    box-shadow: 0 8px 48px rgba(28,20,16,0.08), 0 2px 8px rgba(201,169,110,0.1);
+  }
+
+  .quiz-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--deep);
+    line-height: 1.15;
+    margin-bottom: 6px;
+  }
+  .quiz-subtitle {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: 0.15em;
+    margin-bottom: 24px;
+    display: block;
+  }
+  .quiz-desc {
+    font-size: 14px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 32px;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+  }
+
+  .divider {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 20px 0;
+    color: var(--gold-light);
+  }
+  .divider::before, .divider::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--gold-light), transparent);
+  }
+  .divider span { font-size: 14px; }
+
+  .btn-primary {
+    width: 100%;
+    padding: 16px 32px;
+    background: var(--deep);
+    color: var(--cream);
+    border: none;
+    border-radius: 100px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(201,169,110,0.2) 0%, transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+  .btn-primary:hover { background: var(--brown); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(28,20,16,0.2); }
+  .btn-primary:hover::after { opacity: 1; }
+  .btn-primary:active { transform: translateY(0); }
+
+  .meta-info {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 24px;
+    color: var(--muted);
+    font-size: 12px;
+    letter-spacing: 0.05em;
+  }
+  .meta-info span { display: flex; align-items: center; gap: 5px; }
+
+  /* QUIZ */
+  .progress-bar {
+    width: 100%;
+    height: 2px;
+    background: var(--warm);
+    border-radius: 2px;
+    margin-bottom: 28px;
+    overflow: hidden;
+  }
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(to right, var(--gold-light), var(--gold));
+    border-radius: 2px;
+    transition: width 0.5s ease;
+  }
+
+  .q-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .q-count {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 13px;
+    color: var(--gold);
+    letter-spacing: 0.2em;
+  }
+  .q-category {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    background: var(--warm);
+    padding: 4px 12px;
+    border-radius: 20px;
+  }
+
+  .question-text {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 400;
+    color: var(--deep);
+    line-height: 1.6;
+    margin-bottom: 28px;
+    min-height: 80px;
+  }
+
+  .options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .option-btn {
+    background: rgba(255,255,255,0.8);
+    border: 1.5px solid rgba(201,169,110,0.2);
+    border-radius: 16px;
+    padding: 16px 20px;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.5;
+    width: 100%;
+    backdrop-filter: blur(8px);
+  }
+  .option-btn:hover {
+    border-color: var(--gold);
+    background: rgba(255,255,255,0.95);
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(201,169,110,0.15);
+  }
+  .option-btn.selected {
+    border-color: var(--gold);
+    background: rgba(201,169,110,0.12);
+    color: var(--brown);
+  }
+  .option-letter {
+    width: 28px;
+    height: 28px;
+    min-width: 28px;
+    border-radius: 50%;
+    background: var(--warm);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 14px;
+    color: var(--gold);
+    font-weight: 600;
+  }
+  .option-btn.selected .option-letter {
+    background: var(--gold);
+    color: white;
+  }
+
+  /* LOADING */
+  .loading-screen {
+    text-align: center;
+    padding: 60px 20px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+  .loader-ring {
+    width: 64px;
+    height: 64px;
+    border: 2px solid var(--gold-light);
+    border-top-color: var(--gold);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin: 0 auto 24px;
+  }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .loading-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-style: italic;
+    color: var(--deep);
+    margin-bottom: 8px;
+  }
+  .loading-sub {
+    font-size: 13px;
+    color: var(--muted);
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* RESULT */
+  .result-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  .result-tag {
+    display: inline-block;
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    font-family: 'DM Sans', sans-serif;
+    margin-bottom: 10px;
+  }
+  .result-type {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 48px;
+    font-weight: 300;
+    font-style: italic;
+    color: var(--deep);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .result-name-zh {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--brown);
+    letter-spacing: 0.15em;
+  }
+
+  .result-card {
+    background: rgba(255,255,255,0.75);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 20px;
+    padding: 28px 24px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(12px);
+    box-shadow: 0 4px 32px rgba(28,20,16,0.07);
+  }
+
+  .result-icon {
+    font-size: 48px;
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .result-desc {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 16px;
+  }
+  .tag {
+    background: var(--warm);
+    color: var(--brown);
+    padding: 5px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+    letter-spacing: 0.05em;
+  }
+
+  /* STORE CTA */
+  .store-cta {
+    background: linear-gradient(135deg, var(--deep) 0%, #2D1F15 100%);
+    border-radius: 20px;
+    padding: 28px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 16px;
+  }
+  .store-cta::before {
+    content: '';
+    position: absolute;
+    top: -40px;
+    right: -40px;
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.2);
+  }
+  .store-cta::after {
+    content: '';
+    position: absolute;
+    bottom: -20px;
+    left: -20px;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,110,0.15);
+  }
+
+  .cta-eyebrow {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold-light);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-store-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: white;
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 1;
+  }
+  .cta-phone {
+    font-size: 13px;
+    color: var(--gold-light);
+    margin-bottom: 20px;
+    position: relative;
+    z-index: 1;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .btn-line {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    width: 100%;
+    padding: 15px 24px;
+    background: #06C755;
+    color: white;
+    border: none;
+    border-radius: 100px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 15px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+  }
+  .btn-line:hover { background: #05b34b; transform: translateY(-2px); box-shadow: 0 8px 24px rgba(6,199,85,0.3); }
+
+  .line-icon {
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+  }
+
+  /* OTHER STORES */
+  .other-stores-label {
+    text-align: center;
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-bottom: 12px;
+    font-family: 'Noto Serif TC', serif;
+    font-weight: 300;
+  }
+  .store-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .store-mini {
+    background: rgba(255,255,255,0.7);
+    border: 1px solid rgba(201,169,110,0.2);
+    border-radius: 14px;
+    padding: 14px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.25s;
+    text-decoration: none;
+    display: block;
+  }
+  .store-mini:hover { border-color: var(--gold); background: rgba(255,255,255,0.95); transform: translateY(-2px); }
+  .store-mini-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    color: var(--deep);
+    margin-bottom: 4px;
+    font-weight: 400;
+  }
+  .store-mini-phone {
+    font-size: 11px;
+    color: var(--muted);
+    font-family: 'DM Sans', sans-serif;
+  }
+  .store-mini-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 8px;
+    font-size: 11px;
+    color: #06C755;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .retry-btn {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1.5px solid var(--warm);
+    border-radius: 100px;
+    color: var(--muted);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .retry-btn:hover { border-color: var(--gold-light); color: var(--brown); }
+
+  /* Float ornament */
+  .float-ornament {
+    position: fixed;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    color: rgba(201,169,110,0.06);
+    font-size: 200px;
+    font-weight: 300;
+    pointer-events: none;
+    z-index: 0;
+    user-select: none;
+    line-height: 1;
+  }
+  .float-ornament.tl { top: -40px; left: -20px; }
+  .float-ornament.br { bottom: -60px; right: -20px; font-size: 160px; }
+</style>
+</head>
+<body>
+
+<div class="noise"></div>
+<div class="float-ornament tl">S</div>
+<div class="float-ornament br">✦</div>
+
+<div id="app">
+
+  <!-- INTRO SCREEN -->
+  <div class="screen active" id="screen-intro">
+    <div class="brand-mark">
+      <span class="ornament">✦ Wellness & Beauty ✦</span>
+      <div class="brand-name">薇朵漾美學</div>
+    </div>
+
+    <div class="intro-card">
+      <div class="quiz-title">你是哪種<br>SPA 靈魂？</div>
+      <span class="quiz-subtitle">✦ 身心療癒風格測驗 ✦</span>
+
+      <p class="quiz-desc">
+        透過 8 道直覺問題，<br>
+        找到最適合你的身心療癒風格。<br>
+        讓薇朵漾為你量身打造專屬美學體驗。
+      </p>
+
+      <div class="divider"><span>✦</span></div>
+
+      <button class="btn-primary" onclick="startQuiz()">
+        開始測驗 →
+      </button>
+
+      <div class="meta-info">
+        <span>🕐 約 2 分鐘</span>
+        <span>✨ 8 題</span>
+        <span>🎁 獨家優惠</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- QUIZ SCREEN -->
+  <div class="screen" id="screen-quiz">
+    <div class="progress-bar">
+      <div class="progress-fill" id="progress-fill" style="width:0%"></div>
+    </div>
+
+    <div class="q-header">
+      <span class="q-count" id="q-count">01 / 08</span>
+      <span class="q-category" id="q-category">生活習慣</span>
+    </div>
+
+    <div class="question-text" id="question-text"></div>
+
+    <div class="options" id="options"></div>
+  </div>
+
+  <!-- LOADING SCREEN -->
+  <div class="screen loading-screen" id="screen-loading">
+    <div class="loader-ring"></div>
+    <div class="loading-text">正在解析你的療癒風格…</div>
+    <p class="loading-sub">為你尋找最適合的薇朵漾體驗</p>
+  </div>
+
+  <!-- RESULT SCREEN -->
+  <div class="screen" id="screen-result">
+    <div class="result-header">
+      <div class="result-tag">✦ 你的療癒風格類型 ✦</div>
+      <div class="result-type" id="result-type"></div>
+      <div class="result-name-zh" id="result-name-zh"></div>
+    </div>
+
+    <div class="result-card">
+      <div class="result-icon" id="result-icon"></div>
+      <p class="result-desc" id="result-desc"></p>
+      <div class="tags" id="result-tags"></div>
+    </div>
+
+    <div class="store-cta" id="store-cta">
+      <div class="cta-eyebrow">✦ 為你推薦的門市 ✦</div>
+      <div class="cta-store-name" id="cta-store-name"></div>
+      <div class="cta-phone" id="cta-phone"></div>
+      <a class="btn-line" id="cta-line-btn" href="#" target="_blank">
+        <svg class="line-icon" viewBox="0 0 24 24" fill="white">
+          <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
+        </svg>
+        加入 LINE 預約專屬 SPA 體驗
+      </a>
+    </div>
+
+    <div class="other-stores-label">✦ 其他門市 ✦</div>
+    <div class="store-grid" id="store-grid"></div>
+
+    <button class="retry-btn" onclick="resetQuiz()">↩ 重新測驗</button>
+  </div>
+
+</div>
+
+<script>
+const questions = [
+  {
+    category: "早晨習慣",
+    text: "週末早晨，你最常做的第一件事是？",
+    options: [
+      { text: "打開音樂，讓旋律喚醒感官", score: {A:2, B:1, C:0, D:0} },
+      { text: "安靜泡一杯咖啡，享受晨光", score: {A:0, B:2, C:1, D:0} },
+      { text: "查看手機，規劃今日行程", score: {A:0, B:0, C:1, D:2} },
+      { text: "直接出門慢跑或散步", score: {A:1, B:0, C:0, D:2} }
+    ]
+  },
+  {
+    category: "空間美學",
+    text: "你的理想居家空間，最接近哪種感覺？",
+    options: [
+      { text: "充滿藝術品與個性收藏，每樣都有故事", score: {A:2, B:0, C:1, D:0} },
+      { text: "溫暖木質調，陽光灑進來的書房感", score: {A:0, B:2, C:0, D:1} },
+      { text: "俐落極簡，每件物品都有其位置", score: {A:0, B:1, C:2, D:0} },
+      { text: "可以隨時改變佈局，靈活有彈性", score: {A:1, B:0, C:0, D:2} }
+    ]
+  },
+  {
+    category: "穿搭哲學",
+    text: "準備重要約會時，你的選衣邏輯是？",
+    options: [
+      { text: "憑感覺，今天想說什麼故事就穿什麼", score: {A:2, B:0, C:0, D:1} },
+      { text: "選一套讓自己感覺舒服放鬆的", score: {A:0, B:2, C:0, D:0} },
+      { text: "提前規劃好，確保合適場合", score: {A:0, B:0, C:2, D:1} },
+      { text: "快速決定，隨興搭配出門", score: {A:1, B:1, C:0, D:2} }
+    ]
+  },
+  {
+    category: "社交模式",
+    text: "朋友眼中的你，最像哪種形容？",
+    options: [
+      { text: "有獨特見解，談話很有深度", score: {A:2, B:1, C:0, D:0} },
+      { text: "溫柔體貼，大家的心靈港灣", score: {A:0, B:2, C:0, D:0} },
+      { text: "可靠值得信任，做事有條不紊", score: {A:0, B:0, C:2, D:1} },
+      { text: "充滿活力，帶動氣氛的那個", score: {A:1, B:0, C:0, D:2} }
+    ]
+  },
+  {
+    category: "旅行偏好",
+    text: "出發旅行前，你的準備方式是？",
+    options: [
+      { text: "只買機票，其餘隨遇而安", score: {A:2, B:0, C:0, D:1} },
+      { text: "找幾間有質感的咖啡廳和民宿", score: {A:1, B:2, C:0, D:0} },
+      { text: "詳細規劃行程、餐廳預約一一確認", score: {A:0, B:0, C:2, D:0} },
+      { text: "揪朋友，邊走邊決定", score: {A:0, B:1, C:0, D:2} }
+    ]
+  },
+  {
+    category: "飲食態度",
+    text: "選擇餐廳時，最影響你決定的是？",
+    options: [
+      { text: "有沒有獨特概念或主廚故事", score: {A:2, B:0, C:1, D:0} },
+      { text: "環境氛圍是否讓人放鬆舒適", score: {A:0, B:2, C:0, D:0} },
+      { text: "評價、衛生、CP值是否合理", score: {A:0, B:1, C:2, D:0} },
+      { text: "朋友推薦或當下直覺", score: {A:1, B:0, C:0, D:2} }
+    ]
+  },
+  {
+    category: "放鬆方式",
+    text: "壓力大時，你最常用哪種方式紓壓？",
+    options: [
+      { text: "沉浸在創作中，畫畫、寫作或音樂", score: {A:2, B:0, C:0, D:1} },
+      { text: "閱讀或看一部溫暖的電影", score: {A:0, B:2, C:0, D:0} },
+      { text: "整理空間，讓環境整齊有序", score: {A:0, B:0, C:2, D:0} },
+      { text: "約朋友出去走走、運動", score: {A:0, B:1, C:0, D:2} }
+    ]
+  },
+  {
+    category: "美學感受",
+    text: "看到一個新髮型或造型，你的第一直覺是？",
+    options: [
+      { text: "想到可以如何加入自己的個人風格", score: {A:2, B:0, C:0, D:1} },
+      { text: "感受它帶來的整體氛圍與溫度", score: {A:0, B:2, C:0, D:0} },
+      { text: "評估是否適合自己的臉型和生活", score: {A:0, B:1, C:2, D:0} },
+      { text: "想立刻嘗試看看", score: {A:1, B:0, C:0, D:2} }
+    ]
+  }
+];
+
+const resultTypes = {
+  A: {
+    type: "Blossom",
+    nameZh: "綻放感官型",
+    icon: "🌸",
+    desc: "你的感官細膩而豐富，善於感受生活中每一個美好的瞬間。SPA 對你來說是一場感官的旅行，你享受香氛、音樂、觸感交織的沉浸體驗，每次療程都是一次與自我深度對話的儀式。",
+    tags: ["感官體驗", "香氛療癒", "儀式感", "細膩品味"],
+    store: 0
+  },
+  B: {
+    type: "Serene",
+    nameZh: "靜謐療癒型",
+    icon: "🌿",
+    desc: "你天生嚮往內心的寧靜與平衡。你在乎的不只是外在的美，更是身心靈的全面放鬆。溫柔、緩慢、有溫度的療程節奏最適合你，讓薇朵漾成為你日常中最美的喘息空間。",
+    tags: ["身心平衡", "深層放鬆", "溫柔療癒", "自然舒壓"],
+    store: 1
+  },
+  C: {
+    type: "Lumière",
+    nameZh: "光感煥顏型",
+    icon: "💎",
+    desc: "你追求的是由內而外散發的光采與質感。你重視專業技術與成效，相信精準的保養與護理能帶來真正的改變。對你來說，每一次療程都是一筆值得的自我投資。",
+    tags: ["煥顏光澤", "專業護理", "精緻質感", "自我投資"],
+    store: 2
+  },
+  D: {
+    type: "Vitality",
+    nameZh: "活力新生型",
+    icon: "✨",
+    desc: "你充滿生命力，總能以正向能量迎接每一天。你喜歡嘗試新的療程與體驗，把每次到訪薇朵漾當作一次煥然一新的冒險。活力是你最美的姿態，我們幫你持續閃耀。",
+    tags: ["活力煥發", "勇於嘗試", "正能量", "煥然一新"],
+    store: 3
+  }
+};
+
+const stores = [
+  { name: "北妍店", phone: "(02)2516-5518", line: "https://lin.ee/n2Ms6F9" },
+  { name: "北新店", phone: "(02)2911-0198", line: "https://lin.ee/1ZXpCwB" },
+  { name: "敦南店", phone: "(02)2733-6104", line: "https://lin.ee/oa04p1V" },
+  { name: "旗艦店", phone: "(02)2781-6299", line: "https://lin.ee/WsJ9osn3" }
+];
+
+let currentQ = 0;
+let scores = { A: 0, B: 0, C: 0, D: 0 };
+let answered = false;
+
+function showScreen(id) {
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  const el = document.getElementById(id);
+  el.classList.add('active');
+}
+
+function startQuiz() {
+  currentQ = 0;
+  scores = { A: 0, B: 0, C: 0, D: 0 };
+  showScreen('screen-quiz');
+  renderQuestion();
+}
+
+function renderQuestion() {
+  answered = false;
+  const q = questions[currentQ];
+  const total = questions.length;
+  const progress = ((currentQ) / total) * 100;
+
+  document.getElementById('progress-fill').style.width = progress + '%';
+  document.getElementById('q-count').textContent = String(currentQ + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
+  document.getElementById('q-category').textContent = q.category;
+  document.getElementById('question-text').textContent = q.text;
+
+  const opts = document.getElementById('options');
+  opts.innerHTML = '';
+  const letters = ['A', 'B', 'C', 'D'];
+
+  q.options.forEach((opt, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'option-btn';
+    btn.innerHTML = `<span class="option-letter">${letters[i]}</span><span>${opt.text}</span>`;
+    btn.onclick = () => selectOption(i, btn);
+    opts.appendChild(btn);
+  });
+}
+
+function selectOption(idx, btn) {
+  if (answered) return;
+  answered = true;
+
+  btn.classList.add('selected');
+
+  const q = questions[currentQ];
+  const scoreMap = q.options[idx].score;
+  Object.keys(scoreMap).forEach(k => { scores[k] += scoreMap[k]; });
+
+  setTimeout(() => {
+    currentQ++;
+    if (currentQ < questions.length) {
+      showScreen('screen-quiz');
+      renderQuestion();
+    } else {
+      showResult();
+    }
+  }, 600);
+}
+
+function showResult() {
+  showScreen('screen-loading');
+  setTimeout(() => {
+    const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
+    const result = resultTypes[winner];
+    const mainStore = stores[result.store];
+    const otherStores = stores.filter((_, i) => i !== result.store);
+
+    document.getElementById('result-type').textContent = result.type;
+    document.getElementById('result-name-zh').textContent = result.nameZh;
+    document.getElementById('result-icon').textContent = result.icon;
+    document.getElementById('result-desc').textContent = result.desc;
+
+    const tags = document.getElementById('result-tags');
+    tags.innerHTML = result.tags.map(t => `<span class="tag">${t}</span>`).join('');
+
+    document.getElementById('cta-store-name').textContent = mainStore.name;
+    document.getElementById('cta-phone').textContent = '預約電話：' + mainStore.phone;
+    const lineBtn = document.getElementById('cta-line-btn');
+    lineBtn.href = mainStore.line;
+
+    const grid = document.getElementById('store-grid');
+    grid.innerHTML = otherStores.map(s => `
+      <a class="store-mini" href="${s.line}" target="_blank">
+        <div class="store-mini-name">${s.name}</div>
+        <div class="store-mini-phone">${s.phone}</div>
+        <div class="store-mini-line">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+          加入 LINE
+        </div>
+      </a>
+    `).join('');
+
+    showScreen('screen-result');
+  }, 2000);
+}
+
+function resetQuiz() {
+  showScreen('screen-intro');
+}
+</script>
+</body>
+</html>
