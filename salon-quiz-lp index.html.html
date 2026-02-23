@@ -529,17 +529,147 @@
     color: var(--muted);
     font-family: 'DM Sans', sans-serif;
   }
+  .cta-metro {
+    font-size: 13px;
+    color: var(--gold-light);
+    margin-bottom: 4px;
+    position: relative;
+    z-index: 1;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.05em;
+  }
+
+  .btn-maps {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 24px;
+    background: rgba(255,255,255,0.12);
+    color: var(--gold-light);
+    border: 1px solid rgba(201,169,110,0.4);
+    border-radius: 100px;
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 10px;
+  }
+  .btn-maps:hover { background: rgba(255,255,255,0.2); color: white; }
+
+  .store-mini-metro {
+    font-size: 11px;
+    color: var(--gold);
+    margin-bottom: 3px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .store-mini-actions {
+    display: flex;
+    gap: 6px;
+    justify-content: center;
+    margin-top: 8px;
+  }
+  .store-mini-maps {
+    font-size: 11px;
+    color: var(--muted);
+    text-decoration: none;
+    background: var(--warm);
+    padding: 3px 10px;
+    border-radius: 20px;
+    transition: all 0.2s;
+  }
+  .store-mini-maps:hover { color: var(--brown); }
   .store-mini-line {
     display: inline-flex;
     align-items: center;
-    gap: 4px;
-    margin-top: 8px;
+    gap: 3px;
     font-size: 11px;
     color: #06C755;
     font-family: 'DM Sans', sans-serif;
+    background: rgba(6,199,85,0.08);
+    padding: 3px 10px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.2s;
   }
+  .store-mini-line:hover { background: rgba(6,199,85,0.15); }
 
   .retry-btn {
+    width: 100%;
+    padding: 14px;
+    background: transparent;
+    border: 1.5px solid var(--warm);
+    border-radius: 100px;
+    color: var(--muted);
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    cursor: pointer;
+    transition: all 0.25s;
+  }
+  .retry-btn:hover { border-color: var(--gold-light); color: var(--brown); }
+
+  .course-card {
+    background: linear-gradient(135deg, rgba(201,169,110,0.08) 0%, rgba(255,255,255,0.6) 100%);
+    border: 1px solid rgba(201,169,110,0.3);
+    border-radius: 20px;
+    padding: 24px;
+    margin-bottom: 20px;
+    backdrop-filter: blur(12px);
+  }
+  .course-label {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    color: var(--gold);
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    display: block;
+  }
+  .course-name {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--deep);
+    margin-bottom: 10px;
+  }
+  .course-duration {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--warm);
+    padding: 4px 12px;
+    border-radius: 20px;
+    margin-bottom: 12px;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .course-intro {
+    font-family: 'Noto Serif TC', serif;
+    font-size: 13px;
+    font-weight: 300;
+    line-height: 1.9;
+    color: var(--text);
+    margin-bottom: 14px;
+  }
+  .course-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+  }
+  .course-tag {
+    background: rgba(201,169,110,0.15);
+    color: var(--brown);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-family: 'Noto Serif TC', serif;
+    border: 1px solid rgba(201,169,110,0.2);
+  }
     width: 100%;
     padding: 14px;
     background: transparent;
@@ -604,7 +734,7 @@
 
       <div class="meta-info">
         <span>🕐 約 2 分鐘</span>
-        <span>✨ 8 題</span>
+        <span>✨ 9 題</span>
         <span>🎁 獨家優惠</span>
       </div>
     </div>
@@ -647,15 +777,27 @@
       <div class="tags" id="result-tags"></div>
     </div>
 
+    <div class="course-card" id="course-card">
+      <span class="course-label">✦ 為你推薦的療程 ✦</span>
+      <div class="course-name" id="course-name"></div>
+      <div class="course-duration" id="course-duration">🕐 <span></span></div>
+      <p class="course-intro" id="course-intro"></p>
+      <div class="course-tags" id="course-tags"></div>
+    </div>
+
     <div class="store-cta" id="store-cta">
       <div class="cta-eyebrow">✦ 為你推薦的門市 ✦</div>
       <div class="cta-store-name" id="cta-store-name"></div>
+      <div class="cta-metro" id="cta-metro"></div>
       <div class="cta-phone" id="cta-phone"></div>
+      <a class="btn-maps" id="cta-maps-btn" href="#" target="_blank">
+        📍 查看門市位置
+      </a>
       <a class="btn-line" id="cta-line-btn" href="#" target="_blank">
         <svg class="line-icon" viewBox="0 0 24 24" fill="white">
           <path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/>
         </svg>
-        加入 LINE 預約專屬 SPA 體驗
+        加入 LINE 預約此療程
       </a>
     </div>
 
@@ -756,46 +898,92 @@ const resultTypes = {
     type: "Blossom",
     nameZh: "綻放感官型",
     icon: "🌸",
-    desc: "你的感官細膩而豐富，善於感受生活中每一個美好的瞬間。SPA 對你來說是一場感官的旅行，你享受香氛、音樂、觸感交織的沉浸體驗，每次療程都是一次與自我深度對話的儀式。",
-    tags: ["感官體驗", "香氛療癒", "儀式感", "細膩品味"],
+    desc: "你的感官細膩而豐富，善於感受生活中每一個美好的瞬間。我們為你推薦最能喚醒感官、煥亮氣色的臉部調理體驗。",
+    tags: ["感官體驗", "儀式感", "細膩品味"],
+    course: {
+      name: "開運刮療護理",
+      intro: "採用天然礦石搭配專業手法，沿臉部與頸部線條溫和調理，幫助放鬆緊繃與浮腫感，使整體輪廓看起來更清爽有精神。",
+      duration: "90 分鐘",
+      tags: ["輪廓調理", "浮腫改善", "氣色提亮", "臉部放鬆"]
+    },
     store: 0
   },
   B: {
     type: "Serene",
     nameZh: "靜謐療癒型",
     icon: "🌿",
-    desc: "你天生嚮往內心的寧靜與平衡。你在乎的不只是外在的美，更是身心靈的全面放鬆。溫柔、緩慢、有溫度的療程節奏最適合你，讓薇朵漾成為你日常中最美的喘息空間。",
-    tags: ["身心平衡", "深層放鬆", "溫柔療癒", "自然舒壓"],
+    desc: "你天生嚮往內心的寧靜與平衡，在乎身心靈的全面放鬆。我們為你推薦專為女性設計的全身舒壓體驗，讓緊繃徹底釋放。",
+    tags: ["身心平衡", "深層放鬆", "溫柔療癒"],
+    course: {
+      name: "減壓 SPA 課程",
+      intro: "專為女性設計的全身油壓課程，針對久坐久站造成的肩頸僵硬與腰背痠痛，加強腹部與胸部重點部位調理，提升整體放鬆度。",
+      duration: "70 分鐘",
+      tags: ["肩頸放鬆", "腰背舒緩", "女性調理", "壓力釋放"]
+    },
     store: 1
   },
   C: {
     type: "Lumière",
     nameZh: "光感煥顏型",
     icon: "💎",
-    desc: "你追求的是由內而外散發的光采與質感。你重視專業技術與成效，相信精準的保養與護理能帶來真正的改變。對你來說，每一次療程都是一筆值得的自我投資。",
-    tags: ["煥顏光澤", "專業護理", "精緻質感", "自我投資"],
+    desc: "你追求由內而外散發的光采與質感，重視專業成效。我們為你推薦客製化保濕導入療程，讓肌膚煥發真實光澤。",
+    tags: ["煥顏光澤", "專業護理", "精緻質感"],
+    course: {
+      name: "超導亮顏護理",
+      intro: "四種不同分子玻尿酸搭配多項保養成分，依膚況進行客製化導入與按摩，提升補水與膚質細緻度，讓肌膚看起來更平滑透亮。",
+      duration: "90 分鐘",
+      tags: ["深層保濕", "光澤提升", "膚質調理", "細緻彈潤"]
+    },
     store: 2
   },
   D: {
     type: "Vitality",
     nameZh: "活力新生型",
     icon: "✨",
-    desc: "你充滿生命力，總能以正向能量迎接每一天。你喜歡嘗試新的療程與體驗，把每次到訪薇朵漾當作一次煥然一新的冒險。活力是你最美的姿態，我們幫你持續閃耀。",
-    tags: ["活力煥發", "勇於嘗試", "正能量", "煥然一新"],
+    desc: "你充滿生命力，總能以正向能量迎接每一天。我們為你推薦全身循環調理療程，讓疲憊的身體重獲輕盈活力。",
+    tags: ["活力煥發", "正能量", "煥然一新"],
+    course: {
+      name: "三焦活氧 SPA",
+      intro: "結合捏脊手法與全身循環按摩，著重背部與經絡路線調理，幫助舒緩疲勞與沉重感，讓身體恢復輕鬆狀態。",
+      duration: "80 分鐘",
+      tags: ["疲勞舒緩", "背部放鬆", "循環調理", "活力提升"]
+    },
     store: 3
   }
 };
 
 const stores = [
-  { name: "北妍店", phone: "(02)2516-5518", line: "https://lin.ee/n2Ms6F9" },
-  { name: "北新店", phone: "(02)2911-0198", line: "https://lin.ee/1ZXpCwB" },
-  { name: "敦南店", phone: "(02)2733-6104", line: "https://lin.ee/oa04p1V" },
-  { name: "旗艦店", phone: "(02)2781-6299", line: "https://lin.ee/WsJ9osn3" }
+  { name: "北妍店", phone: "(02)2516-5518", line: "https://lin.ee/n2Ms6F9",  metro: "中山國中站", maps: "https://share.google/poySWLsCUcOk6trNb" },
+  { name: "北新店", phone: "(02)2911-0198", line: "https://lin.ee/1ZXpCwB",  metro: "大坪林站",   maps: "https://share.google/qwLr8zUVt2uQwPUli" },
+  { name: "敦南店", phone: "(02)2733-6104", line: "https://lin.ee/oa04p1V",  metro: "科技大樓站", maps: "https://share.google/cleGBFdLPeKMW8Mqj" },
+  { name: "旗艦店", phone: "(02)2781-6299", line: "https://lin.ee/WsJ9osn3", metro: "忠孝敦化站", maps: "https://share.google/14ywuLiCbzK6wzIyl" }
 ];
+
+// 捷運站 → store index
+const metroToStore = {
+  '中山國中站': 0,
+  '大坪林站':   1,
+  '科技大樓站': 2,
+  '忠孝敦化站': 3
+};
+
+const locationQuestion = {
+  category: "所在地區",
+  text: "你通常在哪個區域活動，或最方便到達的捷運站？",
+  isLocation: true,
+  options: [
+    { text: "中山國中站一帶", metro: "中山國中站" },
+    { text: "忠孝敦化站一帶", metro: "忠孝敦化站" },
+    { text: "科技大樓站一帶", metro: "科技大樓站" },
+    { text: "大坪林站一帶",   metro: "大坪林站"   }
+  ]
+};
 
 let currentQ = 0;
 let scores = { A: 0, B: 0, C: 0, D: 0 };
+let selectedMetro = null;
 let answered = false;
+let allQuestions = [];
 
 function showScreen(id) {
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
@@ -806,15 +994,17 @@ function showScreen(id) {
 function startQuiz() {
   currentQ = 0;
   scores = { A: 0, B: 0, C: 0, D: 0 };
+  selectedMetro = null;
+  allQuestions = [...questions, locationQuestion];
   showScreen('screen-quiz');
   renderQuestion();
 }
 
 function renderQuestion() {
   answered = false;
-  const q = questions[currentQ];
-  const total = questions.length;
-  const progress = ((currentQ) / total) * 100;
+  const q = allQuestions[currentQ];
+  const total = allQuestions.length;
+  const progress = (currentQ / total) * 100;
 
   document.getElementById('progress-fill').style.width = progress + '%';
   document.getElementById('q-count').textContent = String(currentQ + 1).padStart(2, '0') + ' / ' + String(total).padStart(2, '0');
@@ -837,16 +1027,20 @@ function renderQuestion() {
 function selectOption(idx, btn) {
   if (answered) return;
   answered = true;
-
   btn.classList.add('selected');
 
-  const q = questions[currentQ];
-  const scoreMap = q.options[idx].score;
-  Object.keys(scoreMap).forEach(k => { scores[k] += scoreMap[k]; });
+  const q = allQuestions[currentQ];
+
+  if (q.isLocation) {
+    selectedMetro = q.options[idx].metro;
+  } else {
+    const scoreMap = q.options[idx].score;
+    Object.keys(scoreMap).forEach(k => { scores[k] += scoreMap[k]; });
+  }
 
   setTimeout(() => {
     currentQ++;
-    if (currentQ < questions.length) {
+    if (currentQ < allQuestions.length) {
       showScreen('screen-quiz');
       renderQuestion();
     } else {
@@ -860,8 +1054,11 @@ function showResult() {
   setTimeout(() => {
     const winner = Object.keys(scores).reduce((a, b) => scores[a] > scores[b] ? a : b);
     const result = resultTypes[winner];
-    const mainStore = stores[result.store];
-    const otherStores = stores.filter((_, i) => i !== result.store);
+
+    // 地區決定推薦門市，若未選則 fallback 到風格預設
+    const mainStoreIdx = selectedMetro ? metroToStore[selectedMetro] : result.store;
+    const mainStore = stores[mainStoreIdx];
+    const otherStores = stores.filter((_, i) => i !== mainStoreIdx);
 
     document.getElementById('result-type').textContent = result.type;
     document.getElementById('result-name-zh').textContent = result.nameZh;
@@ -871,21 +1068,33 @@ function showResult() {
     const tags = document.getElementById('result-tags');
     tags.innerHTML = result.tags.map(t => `<span class="tag">${t}</span>`).join('');
 
+    // Course card
+    const c = result.course;
+    document.getElementById('course-name').textContent = c.name;
+    document.getElementById('course-duration').innerHTML = `🕐 ${c.duration}`;
+    document.getElementById('course-intro').textContent = c.intro;
+    document.getElementById('course-tags').innerHTML = c.tags.map(t => `<span class="course-tag">${t}</span>`).join('');
+
     document.getElementById('cta-store-name').textContent = mainStore.name;
+    document.getElementById('cta-metro').textContent = '📍 ' + mainStore.metro;
     document.getElementById('cta-phone').textContent = '預約電話：' + mainStore.phone;
-    const lineBtn = document.getElementById('cta-line-btn');
-    lineBtn.href = mainStore.line;
+    document.getElementById('cta-maps-btn').href = mainStore.maps;
+    document.getElementById('cta-line-btn').href = mainStore.line;
 
     const grid = document.getElementById('store-grid');
     grid.innerHTML = otherStores.map(s => `
-      <a class="store-mini" href="${s.line}" target="_blank">
+      <div class="store-mini">
         <div class="store-mini-name">${s.name}</div>
+        <div class="store-mini-metro">🚇 ${s.metro}</div>
         <div class="store-mini-phone">${s.phone}</div>
-        <div class="store-mini-line">
-          <svg width="12" height="12" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
-          加入 LINE
+        <div class="store-mini-actions">
+          <a class="store-mini-maps" href="${s.maps}" target="_blank">📍 地圖</a>
+          <a class="store-mini-line" href="${s.line}" target="_blank">
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="#06C755"><path d="M19.365 9.863c.349 0 .63.285.63.631 0 .345-.281.63-.63.63H17.61v1.125h1.755c.349 0 .63.283.63.63 0 .344-.281.629-.63.629h-2.386c-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63h2.386c.349 0 .63.285.63.63 0 .349-.281.63-.63.63H17.61v1.125h1.755zm-3.855 3.016c0 .27-.174.51-.432.596-.064.021-.133.031-.199.031-.211 0-.391-.09-.51-.25l-2.443-3.317v2.94c0 .344-.279.629-.631.629-.346 0-.626-.285-.626-.629V8.108c0-.27.173-.51.43-.595.06-.023.136-.033.194-.033.195 0 .375.104.495.254l2.462 3.33V8.108c0-.345.282-.63.63-.63.345 0 .63.285.63.63v4.771zm-5.741 0c0 .344-.282.629-.631.629-.345 0-.627-.285-.627-.629V8.108c0-.345.282-.63.627-.63.349 0 .631.285.631.63v4.771zm-2.466.629H4.917c-.345 0-.63-.285-.63-.629V8.108c0-.345.285-.63.63-.63.348 0 .63.285.63.63v4.141h1.756c.348 0 .629.283.629.63 0 .344-.281.629-.629.629M24 10.314C24 4.943 18.615.572 12 .572S0 4.943 0 10.314c0 4.811 4.27 8.842 10.035 9.608.391.082.923.258 1.058.59.12.301.079.766.038 1.08l-.164 1.02c-.045.301-.24 1.186 1.049.645 1.291-.539 6.916-4.078 9.436-6.975C23.176 14.393 24 12.458 24 10.314"/></svg>
+            LINE
+          </a>
         </div>
-      </a>
+      </div>
     `).join('');
 
     showScreen('screen-result');
